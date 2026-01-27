@@ -1,0 +1,66 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+}
+
+.instructions {
+    background-color: rgba(201, 169, 97, 0.05);
+    padding: var(--space-xl);
+    border-left: 2px solid var(--color-gold);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.instructionTitle {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    color: var(--color-gold);
+    margin-bottom: var(--space-sm);
+}
+
+.instructionText {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: var(--color-ivory-muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+.requirementList {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+}
+
+.requirementList li {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--color-ivory);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.requirementList li::before {
+    content: "•";
+    color: var(--color-gold);
+}
+
+.checklist {
+    margin-top: var(--space-md);
+}
+
+.checklistLabel {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--color-ivory);
+    margin-bottom: var(--space-md);
+}
+
+.checkGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-md);
+}

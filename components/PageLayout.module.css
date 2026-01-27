@@ -1,0 +1,28 @@
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-obsidian);
+}
+
+.main {
+    flex: 1;
+    padding-top: 80px;
+    /* Offset for absolute header */
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    padding: var(--space-xl) 0;
+    border-top: 1px solid rgba(245, 243, 237, 0.05);
+    text-align: center;
+}
+
+.copyright {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--color-ivory-dark);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}

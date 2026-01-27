@@ -1,0 +1,67 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    cursor: pointer;
+    margin-bottom: var(--space-md);
+    user-select: none;
+}
+
+.checkboxWrapper {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.hiddenInput {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(245, 243, 237, 0.3);
+    background-color: transparent;
+    transition: all var(--transition-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkIcon {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: var(--color-obsidian);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    scale: 0;
+    transition: scale var(--transition-fast) cubic-bezier(0.12, 0.4, 0.29, 1.46);
+}
+
+.hiddenInput:checked+.box {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+}
+
+.hiddenInput:checked+.box .checkIcon {
+    scale: 1;
+}
+
+.label {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: var(--color-ivory);
+}
+
+.container:hover .box {
+    border-color: var(--color-gold);
+}

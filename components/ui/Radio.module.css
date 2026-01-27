@@ -1,0 +1,88 @@
+.container {
+    margin-bottom: var(--space-xl);
+}
+
+.groupLabel {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--color-ivory);
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.02em;
+}
+
+.optionsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md) var(--space-xl);
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    cursor: pointer;
+}
+
+.radioWrapper {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.hiddenInput {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(245, 243, 237, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+}
+
+.innerCircle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-gold);
+    scale: 0;
+    transition: scale var(--transition-fast) cubic-bezier(0.12, 0.4, 0.29, 1.46);
+}
+
+.hiddenInput:checked+.circle {
+    border-color: var(--color-gold);
+}
+
+.hiddenInput:checked+.circle .innerCircle {
+    scale: 1;
+}
+
+.label {
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    color: var(--color-ivory);
+}
+
+.option:hover .circle {
+    border-color: var(--color-gold);
+}
+
+.error {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: #ff4d4d;
+    font-family: var(--font-sans);
+}

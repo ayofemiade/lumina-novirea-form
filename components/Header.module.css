@@ -1,0 +1,70 @@
+.header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoLink {
+    display: block;
+    width: 60px;
+    height: 60px;
+    transition: transform var(--transition-base);
+    text-decoration: none;
+}
+
+.logoLink:hover {
+    transform: scale(1.05);
+}
+
+.logoImage {
+    width: auto;
+    height: 60px;
+    display: block;
+    object-fit: contain;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    flex: 1;
+}
+
+.agencyName {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-ivory);
+    letter-spacing: 0.1em;
+}
+
+.tagline {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+}
+
+@media (max-width: 480px) {
+    .agencyName {
+        font-size: 0.875rem;
+    }
+
+    .tagline {
+        font-size: 0.5rem;
+    }
+}
