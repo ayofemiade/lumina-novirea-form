@@ -56,7 +56,7 @@ export default function ApplicationForm() {
     }
 
     return (
-        <div className={`container ${styles.formWrapper}`}>
+        <div className={`container ${styles.formWrapper}`} ref={formRef}>
             <ProgressIndicator currentStep={currentStep} totalSteps={totalSteps} />
 
             <div className={styles.sectionHeader} key={`header-${currentStep}`}>
