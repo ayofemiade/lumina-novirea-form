@@ -24,10 +24,10 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
             return;
         }
 
-        // Auto-complete intro after 4 seconds to give logo time to reveal
+        // Auto-complete intro after 6 seconds for the perfect balance of prestige and speed
         const timer = setTimeout(() => {
             handleComplete();
-        }, 4000);
+        }, 6000);
 
         return () => clearTimeout(timer);
     }, [onComplete]);
@@ -36,11 +36,11 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
         setIsExiting(true);
         sessionStorage.setItem('lumina_intro_seen', 'true');
 
-        // Allow animation to finish before unmounting
+        // Graceful 1-second transition into the form experience
         setTimeout(() => {
             setIsVisible(false);
             onComplete();
-        }, 800);
+        }, 1000);
     };
 
     if (!isVisible) return null;
@@ -55,6 +55,10 @@ export default function CinematicIntro({ onComplete }: CinematicIntroProps) {
                         alt="Lumina Novireá Logo"
                         className={styles.logoImage}
                     />
+                    <div className={styles.textContent}>
+                        <h2 className={styles.tagline}>A NEW ERA OF FACES</h2>
+                        <span className={styles.subtitle}>ELITE FASHION MANAGEMENT</span>
+                    </div>
                 </div>
             </div>
 

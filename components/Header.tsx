@@ -15,7 +15,7 @@ export default function Header() {
                 </Link>
                 <div className={styles.info}>
                     <span className={styles.agencyName}>LUMINA NOVIREÁ</span>
-                    <span className={styles.tagline}>Model Application</span>
+                    <span className={styles.tagline}>ELITE FASHION AGENCY</span>
                 </div>
             </div>
         </header>

@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transition: opacity var(--transition-slow) ease-in-out;
+    transition: opacity 1s ease-in-out;
 }
 
 .exit {
@@ -24,29 +24,52 @@
 
 .bloom {
     position: absolute;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(201, 169, 97, 0.15) 0%, transparent 70%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(201, 169, 97, 0.2) 0%, transparent 70%);
     border-radius: 50%;
-    filter: blur(40px);
+    filter: blur(60px);
     opacity: 0;
-    animation: bloomEffect 3s forwards;
+    animation: bloomEffect 5s ease-in-out forwards;
 }
 
 .logoContainer {
     text-align: center;
     opacity: 0;
-    transform: translateY(10px);
-    animation: logoReveal 2.5s 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transform: translateY(15px);
+    animation: logoReveal 4s 0.8s cubic-bezier(0.2, 0, 0.2, 1) forwards;
     width: min(400px, 80vw);
 }
 
 .logoImage {
     width: 100%;
-    max-width: 320px;
+    max-width: 280px;
     height: auto;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 1.5rem;
+}
+
+.textContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.tagline {
+    font-family: var(--font-serif);
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    letter-spacing: 0.3em;
+    color: var(--color-ivory);
+    font-weight: 400;
+    text-shadow: 0 0 10px rgba(245, 243, 237, 0.1);
+}
+
+.subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.5em;
+    color: var(--color-gold);
+    text-transform: uppercase;
 }
 
 .skip {
