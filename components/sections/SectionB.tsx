@@ -37,6 +37,7 @@ export default function SectionB() {
                         <Select
                             label="Eye Color"
                             options={[
+                                { value: 'black', label: 'Black' },
                                 { value: 'brown', label: 'Brown' },
                                 { value: 'blue', label: 'Blue' },
                                 { value: 'green', label: 'Green' },
