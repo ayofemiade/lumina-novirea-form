@@ -1,60 +1,81 @@
+'use client';
+
+import { useFormContext, Controller } from 'react-hook-form';
 import styles from './SectionContent.module.css';
 import Input from '../ui/Input';
 import Select from '../ui/Select';
 
 export default function SectionB() {
+    const { register, control, formState: { errors } } = useFormContext();
+
     return (
         <div className={styles.container}>
             <p className={styles.introText}>Please provide accurate and current measurements as seen in your digitals.</p>
 
             <div className={styles.row}>
-                <Input label="Height (without shoes)" name="height" placeholder="cm / ft" />
-                <Input label="Weight" name="weight" placeholder="kg" />
+                <Input
+                    label="Height (cm)"
+                    type="number"
+                    placeholder="e.g. 175"
+                    {...register('height')}
+                    error={errors.height?.message as string}
+                />
+                <Input
+                    label="Weight (kg)"
+                    type="number"
+                    placeholder="e.g. 60"
+                    {...register('weight')}
+                    error={errors.weight?.message as string}
+                />
             </div>
-
-            <div className={styles.statsGrid}>
-                <Input label="Chest/Bust" name="bust" placeholder="cm/in" />
-                <Input label="Waist" name="waist" placeholder="cm/in" />
-                <Input label="Hips" name="hips" placeholder="cm/in" />
-            </div>
-
-            <div className={styles.row}>
-                <Input label="Shoe Size (EU/UK/US)" name="shoeSize" placeholder="e.g. EU 39 / US 8" />
-                <Input label="Clothing Size (Top)" name="sizeTop" placeholder="e.g. S / EU 36" />
-            </div>
-            <Input label="Clothing Size (Bottom)" name="sizeBottom" placeholder="e.g. 26 / EU 34" />
 
             <div className={styles.featuresGrid}>
-                <Select
-                    label="Eye Color"
+                <Controller
                     name="eyeColor"
-                    options={[
-                        { value: 'brown', label: 'Brown' },
-                        { value: 'blue', label: 'Blue' },
-                        { value: 'green', label: 'Green' },
-                        { value: 'hazel', label: 'Hazel' },
-                        { value: 'grey', label: 'Grey' },
-                        { value: 'other', label: 'Other' }
-                    ]}
+                    control={control}
+                    render={({ field }) => (
+                        <Select
+                            label="Eye Color"
+                            options={[
+                                { value: 'brown', label: 'Brown' },
+                                { value: 'blue', label: 'Blue' },
+                                { value: 'green', label: 'Green' },
+                                { value: 'hazel', label: 'Hazel' },
+                                { value: 'grey', label: 'Grey' },
+                                { value: 'other', label: 'Other' }
+                            ]}
+                            error={errors.eyeColor?.message as string}
+                            {...field}
+                        />
+                    )}
                 />
-                <Select
-                    label="Hair Color"
+                <Controller
                     name="hairColor"
-                    options={[
-                        { value: 'black', label: 'Black' },
-                        { value: 'brown', label: 'Brown' },
-                        { value: 'blonde', label: 'Blonde' },
-                        { value: 'red', label: 'Red' },
-                        { value: 'grey', label: 'Grey' },
-                        { value: 'other', label: 'Other' }
-                    ]}
+                    control={control}
+                    render={({ field }) => (
+                        <Select
+                            label="Hair Color"
+                            options={[
+                                { value: 'black', label: 'Black' },
+                                { value: 'brown', label: 'Brown' },
+                                { value: 'blonde', label: 'Blonde' },
+                                { value: 'red', label: 'Red' },
+                                { value: 'grey', label: 'Grey' },
+                                { value: 'other', label: 'Other' }
+                            ]}
+                            error={errors.hairColor?.message as string}
+                            {...field}
+                        />
+                    )}
                 />
             </div>
 
-            <div className={styles.row}>
-                <Input label="Hair Length" name="hairLength" placeholder="e.g. Shoulder length" />
-                <Input label="Skin Tone/Complexion" name="skinTone" placeholder="e.g. Fair" />
-            </div>
+            <Input
+                label="Skin Tone/Complexion"
+                placeholder="e.g. Fair, Caramel, Ebony"
+                {...register('skinTone')}
+                error={errors.skinTone?.message as string}
+            />
         </div>
     );
 }

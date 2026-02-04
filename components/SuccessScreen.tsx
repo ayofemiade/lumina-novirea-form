@@ -1,6 +1,12 @@
+'use client';
+
 import styles from './SuccessScreen.module.css';
 
-export default function SuccessScreen() {
+interface SuccessScreenProps {
+    referenceId?: string;
+}
+
+export default function SuccessScreen({ referenceId }: SuccessScreenProps) {
     return (
         <div className={styles.container}>
             <div className={styles.content}>
@@ -10,6 +16,9 @@ export default function SuccessScreen() {
                     </svg>
                 </div>
                 <h2 className={styles.title}>Application Received</h2>
+                <div className={styles.referenceBadge}>
+                    Ref: {referenceId || 'LN-LOADING'}
+                </div>
                 <p className={styles.message}>
                     Thank you for sharing your story with Lumina Novireá.
                     Our scouting team will review your profile with the utmost care.

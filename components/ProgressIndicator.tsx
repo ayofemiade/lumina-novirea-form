@@ -10,10 +10,16 @@ interface ProgressIndicatorProps {
 export default function ProgressIndicator({ currentStep, totalSteps }: ProgressIndicatorProps) {
     const percentage = (currentStep / totalSteps) * 100;
 
+    const getStepLabel = () => {
+        if (currentStep === 8) return 'Final Review';
+        if (currentStep === 9) return 'Section H (Declaration)';
+        return `Section ${String.fromCharCode(64 + currentStep)}`;
+    };
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.stepCounter}>
-                <span className={styles.current}>Section {currentStep}</span>
+                <span className={styles.current}>{getStepLabel()}</span>
                 <span className={styles.total}> / {totalSteps}</span>
             </div>
             <div className={styles.progressBar}>

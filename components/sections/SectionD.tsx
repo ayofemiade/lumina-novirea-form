@@ -1,3 +1,6 @@
+'use client';
+
+import { useFormContext, Controller } from 'react-hook-form';
 import styles from './SectionD.module.css';
 import FileUpload from '../ui/FileUpload';
 import Checkbox from '../ui/Checkbox';
@@ -5,6 +8,10 @@ import Input from '../ui/Input';
 import RadioGroup from '../ui/Radio';
 
 export default function SectionD() {
+    const { register, watch, control, formState: { errors } } = useFormContext();
+
+    const method = watch('digitalsMethod');
+
     return (
         <div className={styles.container}>
             <div className={styles.instructions}>
@@ -22,44 +29,66 @@ export default function SectionD() {
             </div>
 
             <div className={styles.submissionMethod}>
-                <RadioGroup
-                    label="Submission Method"
+                <Controller
                     name="digitalsMethod"
-                    options={[
-                        { value: 'upload', label: 'Online form upload' },
-                        { value: 'drive', label: 'Google Drive link' },
-                        { value: 'email', label: 'Email attachment' }
-                    ]}
-                    value="upload"
-                    onChange={() => { }}
+                    control={control}
+                    render={({ field }) => (
+                        <RadioGroup
+                            label="Submission Method"
+                            options={[
+                                { value: 'upload', label: 'Online form upload' },
+                                { value: 'drive', label: 'Google Drive link' },
+                                { value: 'email', label: 'Email attachment (Apply now, send later)' }
+                            ]}
+                            error={errors.digitalsMethod?.message as string}
+                            {...field}
+                        />
+                    )}
                 />
             </div>
 
-            <div className={styles.uploadArea}>
-                <FileUpload
-                    label="Upload Digitals"
-                    onFileSelect={() => { }}
-                    acceptedTypes="image/*"
-                />
-            </div>
+            {method === 'upload' && (
+                <div className={styles.uploadArea}>
+                    <FileUpload
+                        label="Upload Digitals (Max 10MB per image)"
+                        onFileSelect={() => { }}
+                        acceptedTypes="image/*"
+                    />
+                    <p className={styles.helpText} style={{ marginTop: '0.5rem', opacity: 0.7, fontSize: '0.8rem' }}>
+                        * Note: File upload integration requires backend setup. For this demo, please use Google Drive if possible.
+                    </p>
+                </div>
+            )}
 
-            <div className={styles.linkArea}>
-                <Input
-                    label="Link to Digitals (if applicable)"
-                    placeholder="https://drive.google.com/..."
-                    name="digitalsLink"
-                />
-            </div>
+            {method === 'drive' && (
+                <div className={styles.linkArea}>
+                    <Input
+                        label="Link to Digitals"
+                        placeholder="https://drive.google.com/..."
+                        {...register('digitalsLink')}
+                        error={errors.digitalsLink?.message as string}
+                        helperText="Ensure link sharing is set to 'Anyone with the link'"
+                    />
+                </div>
+            )}
+
+            {method === 'email' && (
+                <div className={styles.infoBox} style={{ padding: '1rem', background: 'rgba(212, 175, 55, 0.05)', borderRadius: '8px', border: '1px solid rgba(212, 175, 55, 0.2)', marginBottom: '1.5rem' }}>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--accent-gold)' }}>
+                        After submitting this form, please email your digitals to <strong>join@luminanovirea.com</strong> with your full name as the subject.
+                    </p>
+                </div>
+            )}
 
             <div className={styles.checklist}>
                 <span className={styles.checklistLabel}>Please confirm you have included:</span>
                 <div className={styles.checkGrid}>
-                    <Checkbox label="Headshot" />
-                    <Checkbox label="Left Profile" />
-                    <Checkbox label="Right Profile" />
-                    <Checkbox label="Full Body (Front)" />
-                    <Checkbox label="Full Body (Side)" />
-                    <Checkbox label="Full Body (Back)" />
+                    <Checkbox label="Headshot" {...register('confirmHeadshot')} />
+                    <Checkbox label="Left Profile" {...register('confirmLeftProfile')} />
+                    <Checkbox label="Right Profile" {...register('confirmRightProfile')} />
+                    <Checkbox label="Full Body (Front)" {...register('confirmFullFront')} />
+                    <Checkbox label="Full Body (Side)" {...register('confirmFullSide')} />
+                    <Checkbox label="Full Body (Back)" {...register('confirmFullBack')} />
                 </div>
             </div>
         </div>

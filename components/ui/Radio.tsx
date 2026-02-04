@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { forwardRef } from 'react';
 import styles from './Radio.module.css';
 
 interface RadioOption {
@@ -10,14 +12,15 @@ interface RadioGroupProps {
     label: string;
     name: string;
     options: RadioOption[];
-    value: string;
-    onChange: (value: string) => void;
     error?: string;
+    value?: string;
+    onChange?: (value: any) => void;
+    onBlur?: (e: any) => void;
 }
 
-export default function RadioGroup({ label, name, options, value, onChange, error }: RadioGroupProps) {
+const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(({ label, name, options, error, value, onChange, onBlur }, ref) => {
     return (
-        <div className={styles.container}>
+        <div className={styles.container} ref={ref}>
             <span className={styles.groupLabel}>{label}</span>
             <div className={styles.optionsGrid}>
                 {options.map((option) => (
@@ -28,7 +31,8 @@ export default function RadioGroup({ label, name, options, value, onChange, erro
                                 name={name}
                                 value={option.value}
                                 checked={value === option.value}
-                                onChange={() => onChange(option.value)}
+                                onChange={(e) => onChange?.(e.target.value)}
+                                onBlur={onBlur}
                                 className={styles.hiddenInput}
                             />
                             <div className={styles.circle}>
@@ -39,7 +43,11 @@ export default function RadioGroup({ label, name, options, value, onChange, erro
                     </label>
                 ))}
             </div>
-            {error && <span className={styles.error}>{error}</span>}
+            {error && <span className={styles.error} role="alert">{error}</span>}
         </div>
     );
-}
+});
+
+RadioGroup.displayName = 'RadioGroup';
+
+export default RadioGroup;

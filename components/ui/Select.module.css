@@ -63,12 +63,13 @@
 }
 
 .selectError {
-    border-bottom-color: #ff4d4d;
+    border-bottom-color: var(--color-gold);
 }
 
 .error {
     margin-top: 0.5rem;
     font-size: 0.75rem;
-    color: #ff4d4d;
+    color: var(--color-gold);
     font-family: var(--font-sans);
+    opacity: 0.9;
 }

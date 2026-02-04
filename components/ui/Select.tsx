@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styles from './Select.module.css';
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
@@ -8,16 +8,20 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
     placeholder?: string;
 }
 
-export default function Select({ label, options, error, placeholder, ...props }: SelectProps) {
+const Select = forwardRef<HTMLSelectElement, SelectProps>(({ label, options, error, placeholder, id, name, ...props }, ref) => {
+    const selectId = id || name;
     return (
         <div className={styles.container}>
-            <label className={styles.label} htmlFor={props.id || props.name}>
+            <label className={styles.label} htmlFor={selectId}>
                 {label}
             </label>
             <div className={styles.selectWrapper}>
                 <select
+                    ref={ref}
                     className={`${styles.select} ${error ? styles.selectError : ''}`}
-                    id={props.id || props.name}
+                    id={selectId}
+                    name={name}
+                    defaultValue=""
                     {...props}
                 >
                     <option value="" disabled>{placeholder || 'Select an option'}</option>
@@ -33,7 +37,11 @@ export default function Select({ label, options, error, placeholder, ...props }:
                     </svg>
                 </div>
             </div>
-            {error && <span className={styles.error}>{error}</span>}
+            {error && <span className={styles.error} role="alert">{error}</span>}
         </div>
     );
-}
+});
+
+Select.displayName = 'Select';
+
+export default Select;

@@ -34,8 +34,9 @@
     position: absolute;
     opacity: 0;
     cursor: pointer;
-    height: 0;
-    width: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
 }
 
 .circle {
@@ -83,6 +84,7 @@
     display: block;
     margin-top: 0.5rem;
     font-size: 0.75rem;
-    color: #ff4d4d;
+    color: var(--color-gold);
     font-family: var(--font-sans);
+    opacity: 0.9;
 }

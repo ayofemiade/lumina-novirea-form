@@ -16,19 +16,45 @@
 .input {
     background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(245, 243, 237, 0.2);
-    padding: 0.75rem 0;
+    border-bottom: 1.5px solid rgba(245, 243, 237, 0.1);
+    padding: 0.875rem 0;
     font-family: var(--font-sans);
     font-size: 1.125rem;
     color: var(--color-ivory);
-    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     outline: none;
     border-radius: 0;
+    width: 100%;
+}
+
+.input[type="date"] {
+    color-scheme: dark;
+    cursor: text;
+}
+
+.input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.8) sepia(1) saturate(5) hue-rotate(5deg);
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity var(--transition-base), transform var(--transition-fast);
+    padding: 2px;
+}
+
+.input[type="date"]:hover::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.input[type="date"]::-webkit-inner-spin-button,
+.input[type="date"]::-webkit-clear-button {
+    display: none;
+    -webkit-appearance: none;
 }
 
 .input:focus {
     border-color: var(--color-gold);
-    box-shadow: 0 1px 0 0 var(--color-gold);
+    box-shadow: 0 2px 4px -2px rgba(212, 175, 55, 0.4);
+    transform: translateY(-1px);
 }
 
 .input:focus+.label {
@@ -36,14 +62,15 @@
 }
 
 .inputError {
-    border-bottom-color: #ff4d4d;
+    border-bottom-color: var(--color-gold);
 }
 
 .error {
     margin-top: 0.5rem;
     font-size: 0.75rem;
-    color: #ff4d4d;
+    color: var(--color-gold);
     font-family: var(--font-sans);
+    opacity: 0.9;
 }
 
 .helper {
