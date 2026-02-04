@@ -2,7 +2,6 @@
 
 import { useFormContext, Controller } from 'react-hook-form';
 import styles from './SectionD.module.css';
-import FileUpload from '../ui/FileUpload';
 import Checkbox from '../ui/Checkbox';
 import Input from '../ui/Input';
 import RadioGroup from '../ui/Radio';
@@ -34,11 +33,10 @@ export default function SectionD() {
                     control={control}
                     render={({ field }) => (
                         <RadioGroup
-                            label="Submission Method"
+                            label="How will you provide your digitals?"
                             options={[
-                                { value: 'upload', label: 'Online form upload' },
-                                { value: 'drive', label: 'Google Drive link' },
-                                { value: 'email', label: 'Email attachment (Apply now, send later)' }
+                                { value: 'drive', label: 'Google Drive / Cloud Link' },
+                                { value: 'email', label: 'Email via Gmail (Join@luminanovirea.com)' }
                             ]}
                             error={errors.digitalsMethod?.message as string}
                             {...field}
@@ -47,41 +45,37 @@ export default function SectionD() {
                 />
             </div>
 
-            {method === 'upload' && (
-                <div className={styles.uploadArea}>
-                    <FileUpload
-                        label="Upload Digitals (Max 10MB per image)"
-                        onFileSelect={() => { }}
-                        acceptedTypes="image/*"
-                    />
-                    <p className={styles.helpText} style={{ marginTop: '0.5rem', opacity: 0.7, fontSize: '0.8rem' }}>
-                        * Note: File upload integration requires backend setup. For this demo, please use Google Drive if possible.
-                    </p>
-                </div>
-            )}
-
             {method === 'drive' && (
                 <div className={styles.linkArea}>
+                    <p className={styles.methodInfo}>
+                        Upload your photos to a folder in Google Drive, Dropbox, or iCloud, then paste the sharing link below.
+                    </p>
                     <Input
-                        label="Link to Digitals"
+                        label="Link to Digitals Folder"
                         placeholder="https://drive.google.com/..."
                         {...register('digitalsLink')}
                         error={errors.digitalsLink?.message as string}
-                        helperText="Ensure link sharing is set to 'Anyone with the link'"
+                        helperText="Important: Ensure the link sharing is set to 'Anyone with the link' so we can view them."
                     />
                 </div>
             )}
 
             {method === 'email' && (
-                <div className={styles.infoBox} style={{ padding: '1rem', background: 'rgba(212, 175, 55, 0.05)', borderRadius: '8px', border: '1px solid rgba(212, 175, 55, 0.2)', marginBottom: '1.5rem' }}>
-                    <p style={{ fontSize: '0.9rem', color: 'var(--accent-gold)' }}>
-                        After submitting this form, please email your digitals to <strong>join@luminanovirea.com</strong> with your full name as the subject.
+                <div className={styles.infoBox} style={{ padding: '1.25rem', background: 'rgba(212, 175, 55, 0.05)', borderRadius: '12px', border: '1px solid rgba(212, 175, 55, 0.2)', marginBottom: '2rem' }}>
+                    <p style={{ fontSize: '0.95rem', color: 'var(--color-ivory)', marginBottom: '0.5rem', lineHeight: '1.6' }}>
+                        If you prefer to email us, please complete this application first.
+                    </p>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--color-gold)', fontWeight: '500' }}>
+                        Send your photos to: <span style={{ textDecoration: 'underline' }}>join@luminanovirea.com</span>
+                    </p>
+                    <p style={{ fontSize: '0.8rem', color: 'var(--color-ivory-dark)', marginTop: '0.5rem' }}>
+                        Include your full name and the Reference ID you receive at the end.
                     </p>
                 </div>
             )}
 
             <div className={styles.checklist}>
-                <span className={styles.checklistLabel}>Please confirm you have included:</span>
+                <span className={styles.checklistLabel}>Please confirm you have all required shots:</span>
                 <div className={styles.checkGrid}>
                     <Checkbox label="Headshot" {...register('confirmHeadshot')} />
                     <Checkbox label="Left Profile" {...register('confirmLeftProfile')} />

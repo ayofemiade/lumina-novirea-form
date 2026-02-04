@@ -21,7 +21,6 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(({ label, options, err
                     className={`${styles.select} ${error ? styles.selectError : ''}`}
                     id={selectId}
                     name={name}
-                    defaultValue=""
                     {...props}
                 >
                     <option value="" disabled>{placeholder || 'Select an option'}</option>

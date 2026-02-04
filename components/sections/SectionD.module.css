@@ -47,6 +47,14 @@
     color: var(--color-gold);
 }
 
+.methodInfo {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--color-ivory-muted);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
 .checklist {
     margin-top: var(--space-md);
 }

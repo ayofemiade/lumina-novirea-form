@@ -61,7 +61,7 @@ export const sectionCSchema = z.object({
 });
 
 export const sectionDSchema = z.object({
-    digitalsMethod: z.enum(['upload', 'drive', 'email']),
+    digitalsMethod: z.enum(['drive', 'email']),
     digitalsLink: z.string().url({ message: "Invalid URL" }).optional().or(z.literal('')),
     confirmHeadshot: z.boolean(),
     confirmLeftProfile: z.boolean(),

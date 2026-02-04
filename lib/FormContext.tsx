@@ -43,7 +43,7 @@ export const FormProviderWrapper = ({ children, totalSteps }: { children: React.
             skinTone: '',
             category: [],
             categoryOther: '',
-            digitalsMethod: 'upload',
+            digitalsMethod: 'drive',
             digitalsLink: '',
             confirmHeadshot: false,
             confirmLeftProfile: false,
